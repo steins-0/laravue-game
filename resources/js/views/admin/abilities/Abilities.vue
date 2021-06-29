@@ -1,0 +1,3 @@
+<template>
+    Abilities
+</template>

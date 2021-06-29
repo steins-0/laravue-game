@@ -1,0 +1,105 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+// Variables
+@import 'variables';
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+#content {
+    width: 85%;
+    height: 100vh;
+    padding: 20px;
+    font-family: -apple-system, BlinkMacSystemFont;
+}
+
+
+
+/* Sidebar */
+#sidebar {
+    width: 15%;
+    min-height: 100vh;
+    box-shadow: 1px 0px 8px 0px rgba(136, 136, 136, 0.75);
+    font-family: 'Roboto';
+
+    #sidebar-header {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+
+        img {
+            width: 125px;
+        }
+    }
+
+    #sidebar-content {
+
+        ul {
+            margin-left: -40px;
+        }
+
+        li {
+            height: 40px;
+            display: flex;
+            align-items: center;
+            transition: 0.2s;
+
+            &:hover {
+                background-color: rgba(226, 226, 226, 0.637);
+            }
+
+            .link-icon {
+                margin-left: 15px;
+                width: 35px;
+            }
+
+            .link-text {
+                margin-left: 8px;
+            }
+
+            a {
+                color: black;
+                display: flex;
+                align-items: center;
+                width: 100%;
+                height: 100%;
+                padding-bottom: 2px;
+            }
+
+            svg {
+                font-size: 20px;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+#root {
+    display: flex;
+}
+
+/* Header */
+#admin-header {
+    height: 56px;
+    box-shadow: 1px 0px 4px 0px rgba(136, 136, 136, 0.75);
+}
+
+.page-content {
+    margin-top: 20px;
+    height: 85%;
+    box-shadow: 1px 0px 4px 0px rgba(136, 136, 136, 0.75);
+}
