@@ -14,6 +14,7 @@ class CreateLevelTreeAbilitiesTable extends Migration
     public function up()
     {
         Schema::create('level_tree_abilities', function (Blueprint $table) {
+            $table->tinyInteger('level');
             $table->foreignId('level_tree_id')->constrained('level_trees');
             $table->foreignId('ability_id')->constrained('abilities');
         });

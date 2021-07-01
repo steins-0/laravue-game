@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SoldierRequest extends FormRequest
+class SoldierClassRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,7 @@ class SoldierRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|min:1|max:255',
-            'race_id' => 'required|integer|exists:races,id',
-            'class_id' => 'required|integer|exists:classes,id',
-            'level' => 'required|integer',
-            'experience' => 'required|integer',
-            'image' => 'nullable|mimes:jpg,jpeg,png,gif'
+            'name' => 'required|min:1|max:255|string|unique:classes'
         ];
     }
 }

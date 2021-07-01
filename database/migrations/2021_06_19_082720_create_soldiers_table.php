@@ -16,14 +16,25 @@ class CreateSoldiersTable extends Migration
         Schema::create('soldiers', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->string('image')->nullable();
+
+            $table->string('image')
+                ->nullable();
 
             // Race and the class
-            $table->foreignId('race_id')->constrained('races');
-            $table->foreignId('class_id')->constrained('classes');
+            $table->foreignId('race_id')
+                ->constrained('races')
+                ->nullOnDelete()
+                ->cascadeOnUpdate();
+
+            $table->foreignId('class_id')
+                ->constrained('classes')
+                ->nullOnDelete()
+                ->cascadeOnUpdate();
 
             // Level and XP
-            $table->tinyInteger('level')->default(1);
+            $table->tinyInteger('level')
+                ->default(1);
+
             $table->tinyInteger('experience');
 
             $table->timestamps();

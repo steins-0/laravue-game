@@ -11,9 +11,8 @@ use Illuminate\Http\JsonResponse;
 class SoldierController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Index page
+     * @return mixed
      */
     public function index()
     {
@@ -28,8 +27,7 @@ class SoldierController extends Controller
     public function store(SoldierRequest $request)
     {
         $soldier = $this->save($request);
-        return new JsonResponse($soldier);
-
+        return new JsonResponse($soldier, 201);
     }
 
     /**
@@ -67,15 +65,14 @@ class SoldierController extends Controller
         //
     }
 
-
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Delete the soldier by id
+     * @param $id
+     * @return JsonResponse
      */
     public function destroy($id)
     {
-        //
+        SoldierService::delete($id);
+        return new JsonResponse("The soldier was deleted");
     }
 }

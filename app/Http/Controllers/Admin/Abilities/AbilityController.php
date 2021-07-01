@@ -3,29 +3,56 @@
 namespace App\Http\Controllers\Admin\Abilities;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\Admin\AbilityRequest;
+use App\Models\Abilities\Ability;
+use App\Services\AbilityService;
+use Illuminate\Http\JsonResponse;
 
 class AbilityController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Get a list of abilities
+     * @return mixed
      */
     public function index()
     {
-        //
+        $abilities = Ability::getAbilities();
+        return new JsonResponse($abilities);
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * Add a new ability
+     * @param AbilityRequest $request
+     * @return JsonResponse
      */
-    public function store(Request $request)
+    public function store(AbilityRequest $request)
     {
-        //
+        $ability = $this->save($request);
+        return new JsonResponse($ability, 201);
+    }
+
+    /**
+     * Update the ability
+     * @param AbilityRequest $request
+     * @param $id
+     * @return JsonResponse
+     */
+    public function update(AbilityRequest $request, $id)
+    {
+        $ability = $this->save($request, $id);
+        return new JsonResponse($ability);
+    }
+
+    /**
+     * Add or update the ability
+     * @param $request
+     * @param null $id
+     * @return mixed
+     */
+    private function save($request, $id = null)
+    {
+        $validated = $request->validated();
+        return AbilityService::save($validated, $id);
     }
 
     /**
@@ -40,25 +67,13 @@ class AbilityController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Delete the ability by id
+     * @param $id
+     * @return JsonResponse
      */
     public function destroy($id)
     {
-        //
+        AbilityService::delete($id);
+        return new JsonResponse("The ability was deleted successfully");
     }
 }

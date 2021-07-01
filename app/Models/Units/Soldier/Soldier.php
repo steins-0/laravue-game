@@ -5,39 +5,29 @@ namespace App\Models\Units\Soldier;
 use App\Models\Units\Race;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Soldier extends Model
 {
     use HasFactory;
 
-    /**
-     *
-     * Relationships
-     *
-     */
+    protected $guarded = [];
 
-
-
-    /**
-     * BelongsTo
-     */
+    // Relationships
 
     /**
      * Get the soldier's race
+     * @return BelongsTo
      */
     public function race()
     {
         return $this->belongsTo(Race::class);
     }
 
-
-
-    /**
-     * Has
-     */
-
     /**
      * Get the soldier equipment
+     * @return HasOne
      */
     public function equipment()
     {
@@ -46,22 +36,21 @@ class Soldier extends Model
 
     /**
      * Get the soldier attributes
+     * @return HasOne
      */
     public function attributes()
     {
         return $this->hasOne(SoldierAttributes::class);
     }
 
+    // !Relationships
 
 
-    /**
-     *
-     * Repository
-     *
-     */
+
+    // Repository
 
     /**
-     * Get the last soldiers, default is 10 soldiers
+     * Get the last soldiers, default is 10
      * @param int $paginate
      * @return mixed
      */
@@ -87,4 +76,6 @@ class Soldier extends Model
             ->limit($paginate)
             ->get();
     }
+
+    // !Repository
 }
